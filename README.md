@@ -60,6 +60,18 @@ mise run release:promote
 
 That opens a `develop → main` pull request. Merging it is what triggers [release-please](.github/workflows/release-please.yml), which maintains a "Release PR" bumping `pubspec.yaml`'s version and `CHANGELOG.md` from `feat`/`fix`/breaking-change commits since the last release; merging *that* PR cuts a tagged GitHub Release. GitHub cannot technically restrict which branch a pull request comes from, so keeping `main` release-only is a convention this template documents, not a hard gate — see `.github/PROJECT_MANAGEMENT.md`.
 
+### Required one-time setup: release-please token
+
+`release-please` needs a repository secret named `RELEASE_PLEASE_TOKEN` to open its Release PR. The default `GITHUB_TOKEN` does not work: GitHub never lets actions taken with the default token trigger other workflows, so a Release PR authored with it would sit forever with its required CI/PR-title checks stuck pending, and the branch ruleset would never let it merge. **This secret is not copied when you create a new repository from this template — every new project needs its own.** Set it up once per repository:
+
+1. Create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) scoped to just that repository, with **Contents: Read and write** and **Pull requests: Read and write** permissions.
+2. Store it as a repo secret:
+   ```sh
+   gh secret set RELEASE_PLEASE_TOKEN --repo <owner>/<repo>
+   ```
+
+Without this secret, `release-please` still opens its PR, but it will be permanently blocked from merging.
+
 ## Renaming the app
 
 This template ships with a placeholder identity: pubspec package `flutter_template`, Android namespace/applicationId `com.example.flutter_template`, and iOS bundle identifier `com.example.flutter_template`. Before shipping, replace these with your own values in `pubspec.yaml`, `android/app/build.gradle.kts`, `android/app/src/main/AndroidManifest.xml`, `android/app/src/main/kotlin/com/example/flutter_template/MainActivity.kt` (move the file to match your new package), `ios/Runner/Info.plist`, and `ios/Runner.xcodeproj/project.pbxproj`.
