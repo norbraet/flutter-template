@@ -4,6 +4,12 @@ A Flutter project template with a pre-wired toolchain and GitHub project-managem
 
 Use this repository as a starting point: clone or use it as a GitHub template, then rename the app (see below), fill in `docs/` with your product's actual vision and architecture, and adjust `.github/` labels, milestones, and issue-form copy to your project.
 
+**When creating a new repository from this template, you must include all branches** — the branching model below depends on both `main` and `develop` existing. GitHub's "Use this template" button defaults to copying only the default branch (`develop`), which silently omits `main` and breaks `release-please`/`mise run release:promote` in the new repository. Check **"Include all branches"** in the GitHub UI, or if using the CLI:
+
+```sh
+gh repo create <owner>/<new-repo> --template norbraet/flutter-template --include-all-branches
+```
+
 See the [project documentation](docs/README.md) for the documentation structure this template expects you to fill in.
 
 ## Development
