@@ -12,7 +12,7 @@ gh auth refresh -s project
 bash scripts/bootstrap-github.sh
 ```
 
-Use `--dry-run` to preview changes. The script is idempotent: it enables Discussions, sets write-level default workflow permissions (required by `release-please`, see below), creates `develop` from `main`'s current tip if it doesn't exist yet and makes it the default branch, synchronizes a ruleset covering both `main` and `develop`, updates matching labels and milestones, reuses a project with the configured title, links it to the repository, and adds missing project fields. It requires Bash, Git, and the GitHub CLI, so it works on Linux, macOS, and Windows environments such as Git Bash or WSL.
+Use `--dry-run` to preview changes. The script is idempotent: it enables Discussions, sets write-level default workflow permissions and allows Actions to create pull requests (both required by `release-please`, see below), creates `develop` from `main`'s current tip if it doesn't exist yet and makes it the default branch, synchronizes a ruleset covering both `main` and `develop`, updates matching labels and milestones, reuses a project with the configured title, links it to the repository, and adds missing project fields. It requires Bash, Git, and the GitHub CLI, so it works on Linux, macOS, and Windows environments such as Git Bash or WSL.
 
 ## Branching model and ruleset
 

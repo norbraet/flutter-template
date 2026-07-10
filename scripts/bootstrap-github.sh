@@ -83,11 +83,14 @@ printf 'Synchronizing GitHub configuration for %s.\n' "$repository"
 run gh api --method PATCH "repos/$repository" -F has_discussions=true
 
 # release-please-action needs the default GITHUB_TOKEN to push commits and
-# open pull requests/releases, which requires write-level default workflow
-# permissions instead of GitHub's read-only default.
+# open its release pull request, which requires both write-level default
+# workflow permissions and the separate "Allow GitHub Actions to create and
+# approve pull requests" toggle (despite its name, that toggle's API field
+# governs PR *creation* too — without it release-please fails with "GitHub
+# Actions is not permitted to create or approve pull requests").
 run gh api --method PUT "repos/$repository/actions/permissions/workflow" \
   -f default_workflow_permissions=write \
-  -F can_approve_pull_request_reviews=false
+  -F can_approve_pull_request_reviews=true
 
 if gh api "repos/$repository/branches/$integration_branch" >/dev/null 2>&1; then
   printf 'Branch already exists: %s\n' "$integration_branch"
