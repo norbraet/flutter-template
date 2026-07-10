@@ -8,11 +8,11 @@ One Android/iOS codebase from a single Dart source tree, with a mature widget/re
 
 ## Language: Dart
 
-Dart is Flutter's first-class language: sound null safety, static analysis, and code generation support. Strict analysis is enabled via `flutter_lints` and `analysis_options.yaml` from the start.
+Dart is Flutter's first-class language: sound null safety, static analysis, and code generation support. Strict analysis is enabled via `very_good_analysis` and `analysis_options.yaml` from the start.
 
-## Linting: flutter_lints
+## Linting: very_good_analysis
 
-The only non-SDK dependency in this template. Provides the recommended lint set enforced by `mise run analyze` and `mise run check`. Extend `analysis_options.yaml` deliberately rather than suppressing lints broadly — see `AGENTS.md`.
+The only non-SDK dependency in this template. A curated, opinionated lint set from Very Good Ventures — stricter than the stock `flutter_lints` default, covering immutability, style consistency, and common correctness mistakes. Enforced by `mise run analyze` and `mise run check`. Extend or relax `analysis_options.yaml` deliberately, one rule at a time, rather than suppressing lints broadly — see `AGENTS.md`.
 
 ## Placeholder: state management and dependency injection
 
@@ -42,7 +42,7 @@ Not yet chosen. When you pick a routing solution (e.g. GoRouter, Navigator 2.0 d
 ```text
 Framework:        Flutter
 Language:         Dart
-Linting:          flutter_lints
+Linting:          very_good_analysis
 State/DI:         (not yet chosen)
 Persistence:      (not yet chosen)
 Networking:       (not yet chosen)

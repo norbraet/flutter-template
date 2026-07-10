@@ -1,6 +1,6 @@
 # Contributing
 
-Start with `docs/vision.md`, then read the relevant architecture, data-model, and UI guidance for the area you're changing. See `docs/README.md` for the full documentation map.
+Start with `docs/vision.md`, then read the relevant architecture, data-model, and UI guidance for the area you're changing. See `docs/README.md` for the full documentation map. Participation in this project is governed by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Before implementation
 
@@ -13,6 +13,7 @@ Issues move from `status: needs-triage` to `status: ready` only when the outcome
 
 ## Development workflow
 
+- Branch from `develop` and target pull requests at `develop`, not `main`. `main` only receives the deliberate `develop → main` promotion described in `README.md`; do not open feature or fix PRs against it.
 - Keep pull requests focused and link the issue they resolve.
 - Use the issue-form prefixes `feat:`, `fix:`, and `chore:`; GitHub uses the issue title when suggesting a development branch.
 - Prefer branch names such as `feat/123-sign-in-screen`, `fix/124-null-crash`, and `refactor/125-repository-split` when creating branches manually.

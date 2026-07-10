@@ -61,7 +61,7 @@ Choose event-driven state (versioned domain events, deterministic reducers, undo
 
 ## Idiomatic Dart
 
-Follow the current Dart language guidance and the lints enabled by `flutter_lints`.
+Follow the current Dart language guidance and the lints enabled by `very_good_analysis`.
 
 - Use `UpperCamelCase` for types and extensions, `lowerCamelCase` for members and variables, and `lowercase_with_underscores` for files, directories, libraries, and import prefixes.
 - Prefer clear domain vocabulary over abbreviations. Name booleans as predicates such as `isActive`, `hasExpired`, or `canAdvance`.
@@ -154,6 +154,7 @@ Do not update expectations merely because a test fails. First establish whether 
   - create or update an ADR
   - explain the tradeoffs
 - Use Conventional Commit-style PR titles: `type(optional-scope): concise description`.
+- Branch from and target pull requests at `develop`, never `main`. `main` only advances through the deliberate `develop → main` promotion described in `README.md` and `.github/PROJECT_MANAGEMENT.md`, which is what triggers a release.
 - A change is complete when formatting, analysis, and relevant tests pass; architectural boundaries remain intact; offline/recovery and accessibility implications are handled; migrations are safe; and documentation is current.
 
 When multiple architectural solutions exist:
