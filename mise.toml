@@ -1,0 +1,41 @@
+min_version = "2026.7.0"
+
+[tools]
+flutter = "3.44.6"
+lefthook = "2.1.10"
+
+[tasks.setup]
+description = "Install Flutter dependencies and Git hooks"
+run = [
+  "flutter pub get",
+  "lefthook install",
+]
+
+[tasks.doctor]
+description = "Inspect the local Flutter development environment"
+run = "flutter doctor"
+
+[tasks.dependencies]
+description = "Resolve Flutter dependencies"
+alias = "deps"
+run = "flutter pub get"
+
+[tasks.format]
+description = "Format Dart source files"
+run = "dart format ."
+
+[tasks."format:check"]
+description = "Verify Dart formatting without changing files"
+run = "dart format --output=none --set-exit-if-changed ."
+
+[tasks.analyze]
+description = "Run Flutter static analysis"
+run = "flutter analyze --fatal-infos --fatal-warnings"
+
+[tasks.test]
+description = "Run unit and widget tests"
+run = "flutter test"
+
+[tasks.check]
+description = "Run formatting, analysis, and test checks"
+depends = ["format:check", "analyze", "test"]
