@@ -1,6 +1,6 @@
 # flutter-template
 
-A Flutter project template with a pre-wired toolchain and GitHub project-management baseline. It provides the scaffolding — task runner, git hooks, commit/branch conventions, CI, issue forms, labels, milestones, and a GitHub Project — so a new Flutter project can start from a working setup instead of an empty repository.
+A Flutter project template with a pre-wired toolchain and GitHub project-management baseline. It provides the scaffolding — task runner, git hooks, commit/branch conventions, CI, issue forms, labels, milestones, a GitHub Project, a default-branch ruleset, and automated releases — so a new Flutter project can start from a working setup instead of an empty repository.
 
 Use this repository as a starting point: clone or use it as a GitHub template, then rename the app (see below), fill in `docs/` with your product's actual vision and architecture, and adjust `.github/` labels, milestones, and issue-form copy to your project.
 
@@ -50,13 +50,29 @@ uses those titles when suggesting a branch from an issue. When creating a
 branch manually, use the project convention `<type>/<issue>-<description>`,
 such as `feat/123-sign-in-screen` or `fix/124-null-crash`.
 
+## Branching model
+
+`develop` is the default branch and the target for ordinary feature/fix pull requests; both `main` and `develop` are protected (no direct pushes, no force-push, no deletion) by the ruleset `mise run github:bootstrap` synchronizes. `main` only moves when you deliberately promote `develop` into it:
+
+```sh
+mise run release:promote
+```
+
+That opens a `develop → main` pull request. Merging it is what triggers [release-please](.github/workflows/release-please.yml), which maintains a "Release PR" bumping `pubspec.yaml`'s version and `CHANGELOG.md` from `feat`/`fix`/breaking-change commits since the last release; merging *that* PR cuts a tagged GitHub Release. GitHub cannot technically restrict which branch a pull request comes from, so keeping `main` release-only is a convention this template documents, not a hard gate — see `.github/PROJECT_MANAGEMENT.md`.
+
 ## Renaming the app
 
 This template ships with a placeholder identity: pubspec package `flutter_template`, Android namespace/applicationId `com.example.flutter_template`, and iOS bundle identifier `com.example.flutter_template`. Before shipping, replace these with your own values in `pubspec.yaml`, `android/app/build.gradle.kts`, `android/app/src/main/AndroidManifest.xml`, `android/app/src/main/kotlin/com/example/flutter_template/MainActivity.kt` (move the file to match your new package), `ios/Runner/Info.plist`, and `ios/Runner.xcodeproj/project.pbxproj`.
 
 ## Running the application
 
-This template currently targets Android and iOS. Flutter cannot run this project on Windows, Chrome, or Edge unless those platforms are deliberately added to the project.
+This template currently targets Android and iOS only — that was a deliberate scope choice for the original project it was extracted from, not a technical limit. To add desktop or web support, run the following from the repository root and commit the generated platform folders:
+
+```sh
+flutter create --platforms=web,macos,linux,windows .
+```
+
+Only add the platforms you actually intend to support and test; each one adds native project files you're responsible for keeping current.
 
 ### Windows and Android
 

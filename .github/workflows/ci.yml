@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, develop]
 
 permissions:
   contents: read
@@ -24,3 +24,11 @@ jobs:
         run: mise run dependencies
       - name: Run quality checks
         run: mise run check
+      - name: Generate coverage report
+        run: mise run coverage
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/lcov.info
+          retention-days: 14
