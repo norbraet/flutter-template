@@ -1,0 +1,21 @@
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  conventional-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Conventional Commit-style title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ ! "$TITLE" =~ ^(feat|fix|docs|refactor|test|build|ci|chore|perf)(\([a-z0-9._/-]+\))?!?:\ .+ ]]; then
+            echo "Use: type(optional-scope): concise description"
+            exit 1
+          fi
