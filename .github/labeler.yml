@@ -1,0 +1,27 @@
+"type: docs":
+  - changed-files:
+      - any-glob-to-any-file: ["docs/**", "**/*.md"]
+"area: game-engine":
+  - changed-files:
+      - any-glob-to-any-file: ["lib/features/game/**", "lib/**/game_*.dart", "test/**/game_*.dart"]
+"area: decks":
+  - changed-files:
+      - any-glob-to-any-file: ["lib/features/decks/**", "test/**/decks/**"]
+"area: cards-scryfall":
+  - changed-files:
+      - any-glob-to-any-file: ["lib/features/cards/**", "test/**/cards/**"]
+"area: persistence":
+  - changed-files:
+      - any-glob-to-any-file: ["lib/**/data/**", "lib/**/database/**", "test/**/data/**"]
+"area: ui-design":
+  - changed-files:
+      - any-glob-to-any-file: ["lib/design/**", "lib/**/presentation/**"]
+"area: android":
+  - changed-files:
+      - any-glob-to-any-file: ["android/**"]
+"area: ios":
+  - changed-files:
+      - any-glob-to-any-file: ["ios/**"]
+"area: devx-ci":
+  - changed-files:
+      - any-glob-to-any-file: [".github/**", "mise.toml", "lefthook.yml", "analysis_options.yaml"]
