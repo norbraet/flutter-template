@@ -12,4 +12,10 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      # target-branch must stay pinned to main: release-please otherwise
+      # defaults to the repository's default branch, which is develop in
+      # this template's branching model, and main is the only branch this
+      # workflow should ever release from.
       - uses: googleapis/release-please-action@v4
+        with:
+          target-branch: main
